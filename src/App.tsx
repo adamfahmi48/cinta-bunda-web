@@ -20,6 +20,7 @@ import {
   ThumbsUp,
 } from "lucide-react";
 
+import logoCintaBunda from "./assets/logo-cinta-bunda.svg";
 import "./App.css";
 
 /* =========================================================
@@ -69,9 +70,8 @@ const catalogData = [
     title: "Perlengkapan Ibu dan Anak",
     bgColor: "bg-[#D1F2EB]",
     textColor: "text-[#07613F]",
-    iconColor: "text-[#07613F]",
     buttonColor: "bg-[#48C9B0]",
-    svg: (
+    visual: (
       <svg
         width="120"
         height="120"
@@ -85,15 +85,13 @@ const catalogData = [
       </svg>
     ),
   },
-
   {
     id: 2,
     title: "Produk Mainan Anak",
     bgColor: "bg-[#FCF3CF]",
     textColor: "text-[#D68910]",
-    iconColor: "text-[#D68910]",
     buttonColor: "bg-[#F39C12]",
-    svg: (
+    visual: (
       <svg
         width="120"
         height="120"
@@ -109,15 +107,13 @@ const catalogData = [
       </svg>
     ),
   },
-
   {
     id: 3,
     title: "Produk Terbaru",
     bgColor: "bg-[#E8DAEF]",
     textColor: "text-[#6C3483]",
-    iconColor: "text-[#6C3483]",
     buttonColor: "bg-[#8E44AD]",
-    svg: (
+    visual: (
       <svg
         width="120"
         height="120"
@@ -131,15 +127,13 @@ const catalogData = [
       </svg>
     ),
   },
-
   {
     id: 4,
     title: "Lagi Promo",
     bgColor: "bg-[#FADBD8]",
     textColor: "text-[#C0392B]",
-    iconColor: "text-[#C0392B]",
     buttonColor: "bg-[#E74C3C]",
-    svg: (
+    visual: (
       <svg
         width="120"
         height="120"
@@ -201,7 +195,7 @@ const reviews = [
 ];
 
 /* =========================================================
-   CUSTOM ICONS
+   CUSTOM ICON
 ========================================================= */
 
 type IconProps = {
@@ -219,7 +213,14 @@ const InstagramIcon = ({ className }: IconProps) => (
     strokeLinejoin="round"
     aria-hidden="true"
   >
-    <rect x="3" y="3" width="18" height="18" rx="5" ry="5" />
+    <rect
+      x="3"
+      y="3"
+      width="18"
+      height="18"
+      rx="5"
+      ry="5"
+    />
     <circle cx="12" cy="12" r="4" />
     <circle
       cx="17.5"
@@ -268,33 +269,42 @@ const LeafShape = ({ className }: IconProps) => (
 );
 
 /* =========================================================
-   LOGO
+   BRAND LOGO
 
-   Nanti jika Anda sudah punya file logo asli PNG/SVG,
-   bagian ini bisa diganti menggunakan <img>.
+   SVG hanya simbol.
+   Tulisan dibuat terpisah agar tajam dan responsive.
 ========================================================= */
 
-const LogoSVG = () => (
-  <div className="flex items-center gap-2">
-    <div className="relative w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center overflow-hidden shrink-0">
-      <div className="absolute inset-0 bg-[#62C83E] rounded-full -translate-x-2 translate-y-1" />
+type BrandLogoProps = {
+  placement?: "header" | "footer";
+};
 
-      <div className="absolute inset-0 bg-[#54D9C6] rounded-full translate-x-2 -translate-y-2 scale-75" />
+const BrandLogo = ({
+  placement = "header",
+}: BrandLogoProps) => (
+  <div
+    className={`cb-brand cb-brand--${placement}`}
+    aria-label="Cinta Bunda Group"
+  >
+    <img
+      src={logoCintaBunda}
+      alt=""
+      className="cb-brand__icon"
+      draggable={false}
+      aria-hidden="true"
+    />
 
-      <Heart className="text-white relative z-10 w-5 h-5 md:w-6 md:h-6 fill-current" />
-    </div>
-
-    <div className="flex flex-col text-white">
-      <span className="font-black text-base md:text-xl leading-[0.95] tracking-wide">
+    <div className="cb-brand__content">
+      <span className="cb-brand__name">
         CINTA BUNDA
       </span>
 
-      <span className="font-bold text-xs md:text-sm leading-none tracking-[0.22em]">
+      <span className="cb-brand__group">
         GROUP
       </span>
 
-      <span className="text-[7px] md:text-[8px] mt-1 opacity-90 whitespace-nowrap">
-        Caring Today, Brighter Tomorrow
+      <span className="cb-brand__tagline">
+        Sahabat Setia Si Kecil Tumbuh Bahagia
       </span>
     </div>
   </div>
@@ -302,14 +312,13 @@ const LogoSVG = () => (
 
 /* =========================================================
    HEADER
-   REVISI SESUAI UI/UX REFERENSI
 ========================================================= */
 
 const Header = () => (
   <header className="cb-header">
     <div className="cb-header__inner">
       <div className="cb-header__logo">
-        <LogoSVG />
+        <BrandLogo placement="header" />
       </div>
 
       <div className="cb-header__social">
@@ -319,7 +328,7 @@ const Header = () => (
 
         <a
           href="#"
-          aria-label="Instagram Cinta Bunda Group"
+          aria-label="Instagram Cinta Bunda"
           className="cb-header__social-link"
         >
           <InstagramIcon className="w-[18px] h-[18px]" />
@@ -327,7 +336,7 @@ const Header = () => (
 
         <a
           href="#"
-          aria-label="Instagram Cinta Bunda Kids"
+          aria-label="Instagram Cinta Bunda kedua"
           className="cb-header__social-link"
         >
           <InstagramIcon className="w-[18px] h-[18px]" />
@@ -335,7 +344,7 @@ const Header = () => (
 
         <a
           href="#"
-          aria-label="Facebook Cinta Bunda Group"
+          aria-label="Facebook Cinta Bunda"
           className="cb-header__social-link"
         >
           <FacebookIcon className="w-[18px] h-[18px]" />
@@ -343,7 +352,7 @@ const Header = () => (
 
         <a
           href="#"
-          aria-label="TikTok Cinta Bunda Group"
+          aria-label="TikTok Cinta Bunda"
           className="cb-header__social-link"
         >
           <TikTokIcon className="w-[18px] h-[18px]" />
@@ -351,7 +360,6 @@ const Header = () => (
       </div>
     </div>
 
-    {/* ORGANIC/WAVE SHAPE */}
     <svg
       className="cb-header__wave"
       viewBox="0 0 1440 92"
@@ -374,12 +382,15 @@ const Header = () => (
 );
 
 /* =========================================================
-   HERO / STORE SLIDER
+   HERO
 ========================================================= */
 
 const HeroSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
+  const [currentIndex, setCurrentIndex] =
+    useState(0);
+
+  const [isHovered, setIsHovered] =
+    useState(false);
 
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -408,10 +419,9 @@ const HeroSection = () => {
       5000,
     );
 
-    return () => {
+    return () =>
       window.clearInterval(timer);
-    };
-  }, [nextSlide, isHovered]);
+  }, [isHovered, nextSlide]);
 
   const handleTouchStart = (
     event: React.TouchEvent<HTMLDivElement>,
@@ -436,7 +446,8 @@ const HeroSection = () => {
 
   const handleTouchEnd = () => {
     const distance =
-      touchStartX.current - touchEndX.current;
+      touchStartX.current -
+      touchEndX.current;
 
     if (distance > 50) {
       nextSlide();
@@ -447,12 +458,11 @@ const HeroSection = () => {
     }
   };
 
-  const currentStore = stores[currentIndex];
+  const currentStore =
+    stores[currentIndex];
 
   return (
     <section className="relative pt-5 md:pt-8 pb-20 px-4 md:px-10 lg:px-12 overflow-hidden bg-gradient-to-b from-[#f0f9f4] via-[#fbfdf9] to-white">
-      {/* BACKGROUND DECORATIONS */}
-
       <LeafShape className="absolute top-10 left-[-5%] w-24 h-24 text-green-200 -rotate-45 opacity-70" />
 
       <LeafShape className="absolute bottom-20 right-[-2%] w-32 h-32 text-green-100 rotate-45" />
@@ -498,7 +508,7 @@ const HeroSection = () => {
             {currentStore.description}
           </p>
 
-          {/* BENEFITS */}
+          {/* BENEFIT */}
 
           <div className="grid grid-cols-3 gap-3 md:gap-6 w-full max-w-lg mb-9">
             <div className="flex flex-col items-center text-center">
@@ -559,8 +569,12 @@ const HeroSection = () => {
 
         <div
           className="w-full lg:w-1/2 relative z-10"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+          onMouseEnter={() =>
+            setIsHovered(true)
+          }
+          onMouseLeave={() =>
+            setIsHovered(false)
+          }
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -569,7 +583,9 @@ const HeroSection = () => {
             <div
               className="w-full h-full flex transition-transform duration-500 ease-in-out"
               style={{
-                transform: `translateX(-${currentIndex * 100}%)`,
+                transform: `translateX(-${
+                  currentIndex * 100
+                }%)`,
               }}
             >
               {stores.map((store) => (
@@ -612,7 +628,9 @@ const HeroSection = () => {
                   onClick={() =>
                     setCurrentIndex(index)
                   }
-                  aria-label={`Tampilkan slide ${index + 1}`}
+                  aria-label={`Tampilkan slide ${
+                    index + 1
+                  }`}
                   className={`h-3 rounded-full transition-all duration-300 ${
                     currentIndex === index
                       ? "bg-[#07613F] w-7"
@@ -631,7 +649,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* HERO BOTTOM WAVE */}
+      {/* HERO WAVE */}
 
       <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none pointer-events-none">
         <svg
@@ -651,7 +669,7 @@ const HeroSection = () => {
 };
 
 /* =========================================================
-   CATALOG
+   KATALOG
 ========================================================= */
 
 const CatalogSection = () => (
@@ -678,7 +696,7 @@ const CatalogSection = () => (
           <div
             className={`pt-8 pb-10 px-4 flex justify-center items-center ${item.bgColor} h-40 md:h-56 relative`}
           >
-            {item.svg}
+            {item.visual}
 
             <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-white/55 to-transparent" />
           </div>
@@ -730,8 +748,6 @@ const ReviewSection = () => {
 
   return (
     <section className="py-16 md:py-24 px-0 md:px-12 bg-white relative overflow-hidden">
-      {/* DECORATIONS */}
-
       <div className="absolute top-10 right-7 md:right-10 w-16 md:w-20 h-16 md:h-20 bg-pink-100 rounded-full flex items-center justify-center rotate-12 opacity-80">
         <Heart className="text-pink-400 fill-current w-8 md:w-10 h-8 md:h-10" />
       </div>
@@ -862,7 +878,7 @@ const ReviewSection = () => {
 
 const Footer = () => (
   <footer className="bg-[#07613F] text-white relative pt-20 pb-8 overflow-hidden">
-    {/* WAVE TOP */}
+    {/* WAVE */}
 
     <div className="absolute -top-[2px] left-0 w-full overflow-hidden leading-none rotate-180">
       <svg
@@ -882,7 +898,7 @@ const Footer = () => (
       {/* BRAND */}
 
       <div className="flex flex-col items-start gap-4">
-        <LogoSVG />
+        <BrandLogo placement="footer" />
 
         <p className="text-green-100 text-sm mt-3 max-w-xs leading-relaxed">
           Mendampingi setiap keluarga dengan produk
