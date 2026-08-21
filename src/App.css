@@ -1,184 +1,382 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
+/* =========================================================
+   CINTA BUNDA GROUP
+   APP.CSS
+========================================================= */
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-}
 
-.hero {
+/* =========================================================
+   HEADER
+========================================================= */
+
+.cb-header {
   position: relative;
+  isolation: isolate;
 
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
+  width: 100%;
+  min-height: 132px;
 
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
+  overflow: hidden;
 
-  .framework,
-  .vite {
-    position: absolute;
-  }
+  background: #07613f;
+  color: #ffffff;
 
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+  z-index: 50;
 }
 
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
 
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
+/* subtle green depth */
+
+.cb-header::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(255, 255, 255, 0.055),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 82% 30%,
+      rgba(255, 255, 255, 0.035),
+      transparent 28%
+    );
+
+  z-index: 0;
+}
+
+
+/* =========================================================
+   HEADER CONTENT
+========================================================= */
+
+.cb-header__inner {
+  position: relative;
+  z-index: 3;
+
+  width: min(calc(100% - 72px), 1400px);
+
+  min-height: 94px;
+
+  margin-inline: auto;
+
+  padding:
+    18px
+    0
+    34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.cb-header__logo {
+  flex: 0 1 auto;
+
+  display: flex;
+  align-items: center;
+
+  transform-origin: left center;
+
+  transform: scale(1.08);
+}
+
+
+/* =========================================================
+   SOCIAL MEDIA
+========================================================= */
+
+.cb-header__social {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+}
+
+
+.cb-header__follow-label {
+  margin-right: 5px;
+
+  color: #ffffff;
+
+  font-size: 14px;
+  line-height: 1;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+.cb-header__social-link {
+  width: 37px;
+  height: 37px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  border:
+    1px
+    solid
+    rgba(255, 255, 255, 0.12);
+
+  color: #ffffff;
+
+  background:
+    rgba(255, 255, 255, 0.14);
+
+  box-shadow:
+    inset
+    0
+    1px
+    0
+    rgba(255, 255, 255, 0.08);
+
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+
+.cb-header__social-link:hover {
+  transform:
+    translateY(-2px);
+
+  background:
+    rgba(255, 255, 255, 0.24);
+
+  border-color:
+    rgba(255, 255, 255, 0.24);
+}
+
+
+.cb-header__social-link:focus-visible {
+  outline:
+    2px
+    solid
+    #ffffff;
+
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   ORGANIC WAVE
+========================================================= */
+
+.cb-header__wave {
+  position: absolute;
+
+  z-index: 2;
+
+  left: 0;
+  bottom: -1px;
+
+  width: 100%;
+  height: 58px;
+
+  display: block;
+
+  pointer-events: none;
+}
+
+
+.cb-header__wave path {
+  /*
+    Sama dengan warna awal Hero.
+    Ini yang membuat bagian bawah header
+    terlihat seperti gelombang / organic shape.
+  */
+
+  fill: #f0f9f4;
+}
+
+
+/* =========================================================
+   REVIEW SCROLLBAR
+========================================================= */
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .cb-header {
+    min-height: 118px;
+  }
+
+
+  .cb-header__inner {
+    width:
+      min(
+        calc(100% - 40px),
+        1400px
+      );
+
+    min-height: 84px;
+
+    padding:
+      14px
+      0
+      30px;
+
     gap: 18px;
   }
-}
 
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
 
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
+  .cb-header__logo {
+    transform: scale(1);
   }
 
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
 
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
+  .cb-header__social {
     gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
   }
 
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
 
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
+  .cb-header__social-link {
+    width: 34px;
+    height: 34px;
   }
+
+
+  .cb-header__wave {
+    height: 49px;
+  }
+
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+
+  .cb-header {
+    min-height: 104px;
   }
+
+
+  .cb-header__inner {
+    width:
+      calc(100% - 28px);
+
+    min-height: 74px;
+
+    padding:
+      12px
+      0
+      26px;
+
+    gap: 10px;
+  }
+
+
+  .cb-header__logo {
+    transform:
+      scale(0.88);
+
+    transform-origin:
+      left center;
+
+    margin-right:
+      -12px;
+  }
+
+
+  /*
+    Di mobile label disembunyikan agar icon
+    tidak terlalu padat.
+  */
+
+  .cb-header__follow-label {
+    display: none;
+  }
+
+
+  .cb-header__social {
+    gap: 5px;
+  }
+
+
+  .cb-header__social-link {
+    width: 30px;
+    height: 30px;
+  }
+
+
+  .cb-header__social-link svg {
+    width: 15px;
+    height: 15px;
+  }
+
+
+  .cb-header__wave {
+    height: 40px;
+  }
+
 }
 
-.ticks {
-  position: relative;
-  width: 100%;
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 390px) {
+
+  .cb-header__inner {
+    width:
+      calc(100% - 20px);
   }
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
+
+  .cb-header__logo {
+    transform:
+      scale(0.8);
+
+    margin-right:
+      -22px;
   }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+
+
+  .cb-header__social {
+    gap: 4px;
   }
+
+
+  .cb-header__social-link {
+    width: 28px;
+    height: 28px;
+  }
+
 }
